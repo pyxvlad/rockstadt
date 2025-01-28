@@ -1,12 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://xrl8ljjoto3l"]
+[gd_scene load_steps=19 format=3 uid="uid://xrl8ljjoto3l"]
 
 [ext_resource type="PackedScene" uid="uid://cv2rr3dt8s002" path="res://_- Adaptive • 100% • 8k.glb" id="1_8v30e"]
 [ext_resource type="PackedScene" uid="uid://dy26xc485fhld" path="res://addons/srcoder_fps_controller/player.tscn" id="2_7n6dg"]
 [ext_resource type="PackedScene" uid="uid://xvirvni0l0oy" path="res://addons/srcoder_fps_controller/mouse_lock.tscn" id="2_yk5t5"]
 [ext_resource type="AudioStream" uid="uid://dc8kao842e3ip" path="res://assets/00_Luca/Drum.wav" id="4_n5ptn"]
+[ext_resource type="ArrayMesh" uid="uid://div504kqkl2l" path="res://assets/models/15551_Steel_Pan_Drummer_v1_NEW.obj" id="5_4yx6g"]
 [ext_resource type="AudioStream" uid="uid://dywq02tf4xc68" path="res://assets/00_Luca/Voce.wav" id="5_foad7"]
 [ext_resource type="AudioStream" uid="uid://bvrhv32vreg5b" path="res://assets/00_Luca/Bass.wav" id="6_wv5wl"]
 [ext_resource type="AudioStream" uid="uid://4i1uojr54nxo" path="res://assets/00_Luca/El Guitar.wav" id="7_8f2sw"]
+[ext_resource type="PackedScene" uid="uid://ca7xcdd6nkvku" path="res://assets/models/guitarist.glb" id="9_fltmi"]
+[ext_resource type="PackedScene" uid="uid://b1jyfg0bbx4gw" path="res://assets/models/singer.glb" id="9_rcfrh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0lr2t"]
 size = Vector3(4.90088, 0.802185, 5.1991)
@@ -36,14 +39,15 @@ size = Vector3(1.18107, 0.377319, 0.0654297)
 
 [node name="Player" parent="." instance=ExtResource("2_7n6dg")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.10191, 0)
+jump_velocity = 2.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Player"]
 
 [node name="MouseLock" parent="." instance=ExtResource("2_yk5t5")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(0.289399, 0, -0.957208, 0, 1, 0, 0.957208, 0, 0.289399, -0.45514, 0.524635, 1.66872)
-light_intensity_lumens = 150.0
+transform = Transform3D(0.289399, 0, -0.957209, 0, 1, 0, 0.957209, 0, 0.289399, -0.188852, 0.524635, 0.862331)
+light_intensity_lumens = 300.0
 light_energy = 0.1
 light_indirect_energy = 0.2
 light_volumetric_fog_energy = 1.323
@@ -82,6 +86,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.303174, 0.205649, 1.06319)
 stream = ExtResource("7_8f2sw")
 autoplay = true
 max_distance = 5.0
+
+[node name="Avatars" type="Node3D" parent="."]
+
+[node name="Drummer" type="MeshInstance3D" parent="Avatars"]
+transform = Transform3D(-0.0149123, 0.00161999, 7.08121e-11, 0, -6.55671e-10, 0.015, 0.00161999, 0.0149123, 6.51836e-10, -0.000211552, 0.0640262, 1.85593)
+mesh = ExtResource("5_4yx6g")
+skeleton = NodePath("../../Node3D/Drums")
+
+[node name="guitarist" parent="Avatars" instance=ExtResource("9_fltmi")]
+transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.532031, 0.16991, 1.33233)
+
+[node name="singer" parent="Avatars" instance=ExtResource("9_rcfrh")]
+transform = Transform3D(-0.003, 0, -2.62268e-10, 0, 0.003, 0, 2.62268e-10, 0, -0.003, 0.0815132, 0.0165511, 1.13942)
 
 [node name="Walls" type="Node3D" parent="."]
 
