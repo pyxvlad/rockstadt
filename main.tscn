@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=3 uid="uid://xrl8ljjoto3l"]
+
+[ext_resource type="PackedScene" uid="uid://cv2rr3dt8s002" path="res://_- Adaptive • 100% • 8k.glb" id="1_8v30e"]
+[ext_resource type="PackedScene" uid="uid://dy26xc485fhld" path="res://addons/srcoder_fps_controller/player.tscn" id="2_7n6dg"]
+[ext_resource type="PackedScene" uid="uid://xvirvni0l0oy" path="res://addons/srcoder_fps_controller/mouse_lock.tscn" id="2_yk5t5"]
+[ext_resource type="AudioStream" uid="uid://dc8kao842e3ip" path="res://assets/00_Luca/Drum.wav" id="4_n5ptn"]
+[ext_resource type="AudioStream" uid="uid://dywq02tf4xc68" path="res://assets/00_Luca/Voce.wav" id="5_foad7"]
+[ext_resource type="AudioStream" uid="uid://bvrhv32vreg5b" path="res://assets/00_Luca/Bass.wav" id="6_wv5wl"]
+[ext_resource type="AudioStream" uid="uid://4i1uojr54nxo" path="res://assets/00_Luca/El Guitar.wav" id="7_8f2sw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0lr2t"]
+size = Vector3(4.90088, 0.802185, 5.1991)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ys2l"]
+size = Vector3(1.15137, 1.59277, 4.83974)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bjqye"]
+size = Vector3(1, 1.61401, 5.55225)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5500q"]
+size = Vector3(7.03992, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crlra"]
+size = Vector3(1.46292, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urcek"]
+size = Vector3(2.12598, 0.273254, 1.49768)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ob1r4"]
+size = Vector3(2.36618, 0.99353, 0.0977783)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fgek7"]
+size = Vector3(1.18107, 0.377319, 0.0654297)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_7n6dg")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.10191, 0)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player"]
+
+[node name="MouseLock" parent="." instance=ExtResource("2_yk5t5")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.289399, 0, -0.957208, 0, 1, 0, 0.957208, 0, 0.289399, -0.45514, 0.524635, 1.66872)
+light_intensity_lumens = 150.0
+light_energy = 0.1
+light_indirect_energy = 0.2
+light_volumetric_fog_energy = 1.323
+shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.942057, 0, 0.335452, 0, 1, 0, -0.335452, 0, 0.942057, -0.0202112, 0, 0)
+
+[node name="_- Adaptive • 100_ • 8k" parent="Node3D" instance=ExtResource("1_8v30e")]
+transform = Transform3D(0.98807, 0.152712, 0.0198989, -0.153408, 0.98735, 0.0400612, -0.0135294, -0.0426359, 0.998999, -0.461885, -0.435859, 0.495825)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D/_- Adaptive • 100_ • 8k"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/_- Adaptive • 100_ • 8k/StaticBody3D"]
+transform = Transform3D(0.987927, -0.15372, -0.0191821, 0.152864, 0.987441, -0.0401325, 0.0251104, 0.0367154, 0.999025, -0.266971, -0.133388, -0.22743)
+shape = SubResource("BoxShape3D_0lr2t")
+
+[node name="Drums" type="AudioStreamPlayer3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.684479, 0.230813, 1.8896)
+stream = ExtResource("4_n5ptn")
+autoplay = true
+max_distance = 10.0
+
+[node name="Vocal" type="AudioStreamPlayer3D" parent="Node3D"]
+transform = Transform3D(0.794309, 0, -0.607515, 0, 1, 0, 0.607515, 0, 0.794309, -0.302069, 0.29509, 1.04822)
+stream = ExtResource("5_foad7")
+autoplay = true
+
+[node name="Bass" type="AudioStreamPlayer3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95459, 0.207099, 1.07543)
+stream = ExtResource("6_wv5wl")
+autoplay = true
+
+[node name="ElGuitar" type="AudioStreamPlayer3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.303174, 0.205649, 1.06319)
+stream = ExtResource("7_8f2sw")
+autoplay = true
+max_distance = 5.0
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="WallRightStaticBody3D" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16255, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallRightStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0756836, 0.0288086, -0.553185)
+shape = SubResource("BoxShape3D_4ys2l")
+
+[node name="WallLeftStaticBody3D2" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.970117, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallLeftStaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00955677, 0.249878, -0.00756842)
+shape = SubResource("BoxShape3D_bjqye")
+
+[node name="WallBackStaticBody3D" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.13143)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallBackStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286804, 0, 0)
+shape = SubResource("BoxShape3D_5500q")
+
+[node name="SceneRightStaticBody3D" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.48289)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/SceneRightStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55028, 0, 0)
+shape = SubResource("BoxShape3D_crlra")
+
+[node name="SceneFloorStaticBody3D" type="StaticBody3D" parent="Walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/SceneFloorStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208706, -0.113409, 1.73274)
+shape = SubResource("BoxShape3D_urcek")
+
+[node name="BackSceneStaticBody3D" type="StaticBody3D" parent="Walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/BackSceneStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12706, 0.0524292, 2.11345)
+shape = SubResource("BoxShape3D_ob1r4")
+
+[node name="SceneRampStaticBody3D" type="StaticBody3D" parent="Walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/SceneRampStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.571373, -0.820691, 0, 0.820691, 0.571373, -0.227535, -0.0965216, 0.859023)
+shape = SubResource("BoxShape3D_fgek7")
